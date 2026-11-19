@@ -1,10 +1,26 @@
 import './App.css';
+import { Grid } from '@mui/material';
 
 function App() {
     return (
-        <div>
-            <h1>Bienvenido al Dashboard</h1>
-        </div>
+        <Grid>
+
+            {/* Encabezado Sismo*/}
+            <Grid>Elemento: Encabezado </Grid>
+
+            {/* Panel Filtros */}
+            <Grid>Elemento: Filtros </Grid>
+
+            {/* Tarjetas Filtros */}
+            <Grid>Elemento: Indicadores </Grid>
+
+            {/* Gráfico */}
+            <Grid>Elemento: Gráfico</Grid>
+
+            {/* Información adicional */}
+            <Grid>Elemento: Pie de Página </Grid>
+
+        </Grid>
     );
 }
 
