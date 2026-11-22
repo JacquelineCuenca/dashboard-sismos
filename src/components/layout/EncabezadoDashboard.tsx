@@ -13,10 +13,11 @@ export function EncabezadoDashboard({ titulo, subtitulo, rutaLogo }: EncabezadoD
     >
       <Box
         sx={{
-          width: 44,
-          height: 44,
-          borderRadius: '50%',
-          bgcolor: '#fee2e2',
+          width: { xs: 92, sm: 104 },
+          height: { xs: 62, sm: 70 },
+          borderRadius: 3, // esquinas redondeadas como en el prototipo
+          bgcolor: '#ffffff',
+          overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -30,14 +31,18 @@ export function EncabezadoDashboard({ titulo, subtitulo, rutaLogo }: EncabezadoD
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).style.display = 'none';
           }}
-          sx={{ width: 24, height: 24 }}
+          sx={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+          }}
         />
       </Box>
 
       <Box>
         <Box
           component="h1"
-          sx={{ m: 0, fontSize: '1.5rem', fontWeight: 700, color: '#0f172a' }}
+          sx={{ m: 0, fontSize: { xs: '1.25rem', sm: '1.5rem' }, fontWeight: 700, color: '#0f172a' }}
         >
           {titulo}
         </Box>

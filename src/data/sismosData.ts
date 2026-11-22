@@ -208,7 +208,7 @@ export function calcularDatosDashboard(
     encabezado: {
       titulo: 'Monitor de sismos: Noroeste de Sudamérica y Centroamérica',
       subtitulo: `Sismos de magnitud ${filtros.magnitudMinima.toFixed(1)} o mayor · 3 ene 2020 – 1 ene 2026`,
-      rutaLogo: '/logo-sismo.svg',
+      rutaLogo: '/IconoSismoDashboard.jpg',
     },
     kpis,
     graficos: {
