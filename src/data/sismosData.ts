@@ -1,4 +1,3 @@
-import sismosRaw from '../../sismos.json';
 
 import type {
   BarraMagnitud,
@@ -43,27 +42,28 @@ export const OPCIONES_FILTROS: OpcionesFiltros = {
   ],
 };
 
-// Normaliza registros de sismos.json sin importar si vienen con nombres en inglés (USGS) o español
-export const REGISTROS_SISMOS: RegistroSismo[] = Array.isArray(sismosRaw)
-  ? (sismosRaw as Record<string, unknown>[]).map((item, idx) => {
-      const fechaStr = String(item.fecha ?? item.time ?? '2020-01-01');
-      const anioNum = Number(item.anio ?? new Date(fechaStr).getFullYear() ?? 2020);
-      const magNum = Number(item.magnitud ?? item.mag ?? 4.5);
-      const profNum = Number(item.profundidad ?? item.depth ?? 30);
-      const lugarStr = String(item.lugar ?? item.place ?? '');
-      const paisStr = String(item.pais ?? extraerPais(lugarStr));
+// Normaliza registros con nombres en inglés (USGS) o español
+export function normalizarRegistros(items: Record<string, unknown>[]): RegistroSismo[] {
+  return items.map((item, idx) => {
+    const fechaStr = String(item.fecha ?? item.time ?? '2020-01-01');
+    const anioNum = Number(item.anio ?? new Date(fechaStr).getFullYear());
+    const magNum = Number(item.magnitud ?? item.mag ?? 4.5);
+    const profNum = Number(item.profundidad ?? item.depth ?? 30);
+    const lugarStr = String(item.lugar ?? item.place ?? '');
+    const paisStr = String(item.pais ?? extraerPais(lugarStr));
 
-      return {
-        id: String(item.id ?? idx),
-        fecha: fechaStr,
-        anio: anioNum,
-        pais: paisStr,
-        magnitud: magNum,
-        profundidad: profNum,
-        lugar: lugarStr,
-      };
-    })
-  : [];
+    return {
+      id: String(item.id ?? idx),
+      fecha: fechaStr,
+      anio: anioNum,
+      pais: paisStr,
+      magnitud: magNum,
+      profundidad: profNum,
+      lugar: lugarStr,
+    };
+  });
+}
+
 
 function extraerPais(lugar: string): string {
   const paisesConocidos = ['Colombia', 'Perú', 'Peru', 'Panamá', 'Panama', 'Ecuador', 'Venezuela', 'Costa Rica'];
